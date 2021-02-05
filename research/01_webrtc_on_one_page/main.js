@@ -77,16 +77,6 @@ function onSDPError(error) {
     console.log('Failed to create SDP: ' + error.toString());
 }
 
-function onPeer1DataTextarea() {
-    peer1Channel.send(peer1DataTextarea.value);
-    console.log('Sent Data: ' + peer1DataTextarea.value);
-}
-
-function onPeer2DataTextarea() {
-    peer2Channel.send(peer2DataTextarea.value);
-    console.log('Sent Data: ' + peer2DataTextarea.value);
-}
-
 function onPeer1SDP(rtcSessionDescription) {
     debugger;
     peer1Connection.setLocalDescription(rtcSessionDescription);
@@ -143,21 +133,11 @@ function onAddIceCandidateError(error) {
 
 function onPeer2DataChannel(e) {
     debugger;
-    console.log('Peer 2 data channel');
     peer2Channel = e.channel;
+    console.log('Created object peer2Channel');
     peer2Channel.onmessage = onPeer2Message;
     peer2Channel.onopen = onPeer2ChannelStateChange;
     peer2Channel.onclose = onPeer2ChannelStateChange;
-}
-
-function onPeer1Message(e) {
-    console.log('Peer 1 received message');
-    peer1DataTextarea.value = e.data;
-}
-
-function onPeer2Message(e) {
-    console.log('Peer 2 received message');
-    peer2DataTextarea.value = e.data;
 }
 
 function onPeer1ChannelStateChange() {
@@ -182,6 +162,26 @@ function onPeer2ChannelStateChange() {
     debugger;
     const readyState = peer2Channel.readyState;
     console.log(`Peer 2 channel state is: ${readyState}`);
+}
+
+function onPeer1DataTextarea() {
+    peer1Channel.send(peer1DataTextarea.value);
+    console.log('Peer 1 sent message: ' + peer1DataTextarea.value);
+}
+
+function onPeer2DataTextarea() {
+    peer2Channel.send(peer2DataTextarea.value);
+    console.log('Peer 2 sent message: ' + peer2DataTextarea.value);
+}
+
+function onPeer1Message(e) {
+    console.log('Peer 1 received message: ' + e.data);
+    peer1DataTextarea.value = e.data;
+}
+
+function onPeer2Message(e) {
+    console.log('Peer 2 received message: ' + e.data);
+    peer2DataTextarea.value = e.data;
 }
 
 function closeDataChannels() {
