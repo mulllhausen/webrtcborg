@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC on 1 Webpage">
+    <title>WebRTC on 1 Webpage</title>
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+    <div id="buttons">
+        <button id="startButton">Start</button>
+        <button id="stopButton" disabled>Stop</button>
+    </div>
+    <span id="instructions">View the console to see logging</span>
+    <span id="status"></span>
+    <table id="sendReceive">
+        <thead>
+            <tr>
+                <th></th>
+                <th>peer 1</th>
+                <th>peer 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan=2>sdp</td>
+                <td><textarea readonly placeholder="click the Start button to generate peer 1's (send) sdp"></textarea></td>
+                <td><textarea disabled placeholder="paste peer 1's (send) sdp here - peer 2's receive sdp"></textarea></td>
+            </tr>
+            <tr>
+                <td><textarea disabled placeholder="paste peer 2's (send) sdp here - peer 1's receive sdp"></textarea></td>
+                <td><textarea readonly placeholder="click the Start button to generate peer 2's (send) sdp"></textarea></td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td><textarea disabled placeholder="type here after connection"></textarea></td>
+                <td><textarea disabled placeholder="type here after connection"></textarea></td>
+            </tr>
+        </tbody>
+    </table>
+<script src="main.js" async></script>
+
+</body>
+</html>

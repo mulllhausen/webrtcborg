@@ -1,0 +1,56 @@
+body {
+    font-family: arial;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+button, .button {
+    margin: 10px;
+    font-size: 100%;
+    text-align: center;
+    display: inline-block;
+}
+span#instructions, span#status {
+    color: red;
+    margin: 10px;
+}
+table#sendReceive {
+    width: 100%;
+    border-spacing: 5px;
+    margin: 0;
+    padding: 0;
+}
+textarea {
+    color: #444;
+    top: 0;
+    left: 0;
+    resize: none;
+    position: absolute;
+    bottom: 0px;
+    width: calc(100% - 5px);
+    font-size: 90%;
+}
+table#sendReceive th:nth-child(1) {
+    width: 1px;/*small px > 0*/
+    background-color: transparent;
+}
+table#sendReceive td:nth-child(1) {
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+table#sendReceive tbody tr:nth-child(1),
+table#sendReceive tbody tr:nth-child(2) {
+    height: 180px;
+}
+table#sendReceive tbody tr:nth-child(3) {
+    height: 100px;
+}
+td, th {
+    position: relative;
+    background-color: lightgrey;
+}
+table#sendReceive th {
+    padding: 5px 0 5px 0;
+    font-weight: bold;
+}
