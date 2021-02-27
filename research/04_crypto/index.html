@@ -1,0 +1,60 @@
+<h1>webcrypto api implementation of something like "signed tls"</h1>
+
+<pre>
+its early days. i'll try some things and let ideas develop - learning by trial
+and error. if something proves impractical i can always change it in beta.
+
+here i'll use a public/private keypair to identify the user. it will also enable
+other users to establish a shared secret key with them for secure communications.
+of course they'll need to share the public key over a secure medium (qr code,
+paste into a chat app that uses ssl, etc) otherwise the key will be subject to a
+man-in-the-middle attack and they'll end up communicating with someone other
+than who they think they are communicating with.
+
+ideally a user would have the same public key on each device, otherwise their
+friends would have to keep track of a new public key every time they used a new
+device. for this they can securely export the private key and import it into a
+new device. secure export/import will be accomplished by exporting/importing the
+private key encrypted with the password and then providing the password to
+unlock is as required.
+
+the private key should not be leaked or else it will be copied by other websites
+/apps and used to impersonate the user. localstorage may not be secure, so use a
+password to encrypt it if storing it there. localstorage may also be wiped
+automatically by the browser if it gets too full, so we should store it on disk
+(likewise encrypted by the password).
+
+the unencrypted private key is never exposed, so the user will not be able to
+directly back this up, unless they choose to implement their own crypto and
+decrypt the private key offline. that's fine if they know what they are doing,
+but it is beyond the scope of this project since this project is not aimed at
+crypto experts. given that most users will never see their plaintext private key,
+if the password is lost then the user would eiher need to generate a new private
+key. maybe that is not a disaster? so long as it is a rare event.
+</pre>
+
+<span id="error" style="color:red;"></span><br>
+<button id="btnInputPassword" disabled>input password</button>
+<br>
+<br>
+my salt + iv + encrypted private key:<br>
+<textarea id="inputEncryptedPrivKey"></textarea>
+<br>
+my plaintext public key:<br>
+<textarea id="inputPubKey" readonly disabled></textarea>
+<br>
+friend's plaintext public key:<br>
+<textarea id="inputFriendPubKey" disabled></textarea>
+<br>
+diffie hellman shared secret key derived from my public key and my friend's
+public key:<br>
+<textarea id="dhSecret" disabled></textarea>
+<br>
+<br>
+<button id="btnEncryptMessage" disabled>encrypt message</button>
+<button id="btnDecryptMessage" disabled>decrypt message</button><br>
+message:<br>
+<textarea id="inputMessage" placeholder="type your message here" disabled></textarea><br>
+
+<link rel="stylesheet" href="main.css"/>
+<script src="main.js"></script>
