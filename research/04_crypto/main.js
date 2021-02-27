@@ -55,7 +55,9 @@ async function processKeyPair() {
     }
     let friendPubKey = null;
     if (inputFriendPubKey.value.trim() != '') {
-        friendPubKey = await importPubKey(JSON.parse(friendPubKey));
+        friendPubKey = await importPubKey(
+            JSON.parse(inputFriendPubKey.value.trim())
+        );
     }
     deriveSharedSecret(friendPubKey);
 }
